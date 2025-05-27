@@ -3,6 +3,10 @@ import argparse
 import logging
 from datetime import datetime
 
+# mkdir os
+if not os.path.exists("log"):
+    os.mkdir("log")
+
 # Getting time stamp
 timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S")
 
@@ -14,7 +18,7 @@ logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s - %(levelname)s - %(message)s",
     handlers=[
-        logging.FileHandler(f"/home/xiyuanyang/.log/code-counting-{timestamp}.log"),
+        logging.FileHandler(f"log/code-counting-{timestamp}.log"),
     ],
 )
 
@@ -45,7 +49,10 @@ def count_code_lines(repo_path, ignored_dirs=None, file_types=None):
         dirs[:] = [d for d in dirs if d not in ignored_dirs]
 
         for file in files:
-            _, ext = os.path.splitext(file)
+            file_name, ext = os.path.splitext(file)
+            if ext == "":
+                logging.info(f"Ignoring dotfiles {file}")
+                continue
             # If file_types is specified, only count those extensions
             if (not file_types) or (ext in file_types):
                 file_path = os.path.join(root, file)
@@ -103,6 +110,7 @@ if __name__ == "__main__":
             ".vscode",
             "build",
             "__pycache__",
+            "log",
         ]
     )
 
@@ -111,6 +119,5 @@ if __name__ == "__main__":
     else:
         total, per_ext = count_code_lines(repo_path, ignored_dirs, file_types)
         logging.log(NOTICE_LEVEL, f"Total lines of code: {total}")
-        logging.log(NOTICE_LEVEL, "Lines per file extension:")
         for ext, count in per_ext.items():
             logging.log(NOTICE_LEVEL, f"{ext}: {count}")
