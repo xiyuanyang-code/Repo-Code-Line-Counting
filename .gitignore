@@ -1,4 +1,8 @@
-/.vscode/
-/.history/
-/__pycache__/
-/log/
+**/.vscode/
+**/.history/
+**/__pycache__/
+**/log/
+
+**.egg-info
+/build/
+**.pytest_cache
