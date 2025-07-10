@@ -1,7 +1,7 @@
 import os
 import logging
 import argparse
-import colorama
+
 from colorama import Style, Fore
 from .counter import count_code_lines, setup_logging, NOTICE_LEVEL
 from datetime import datetime

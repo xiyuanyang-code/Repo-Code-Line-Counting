@@ -106,8 +106,4 @@ Detailed logs, including file-by-file line counts and any errors encountered, ar
 
 ## Todo
 
-*   Integrate `.gitignore` file parsing to automatically identify ignored files and directories.
 *   Add support for file matching using regular expressions.
-*   Improve handling of binary files and different encodings.
-*   Add more comprehensive unit tests.
-*   Consider adding a simple GUI interface (future enhancement).
