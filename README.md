@@ -106,4 +106,6 @@ Detailed logs, including file-by-file line counts and any errors encountered, ar
 
 ## Todo
 
-*   Add support for file matching using regular expressions.
+- Add support for file matching using regular expressions.
+
+- Add some test.
