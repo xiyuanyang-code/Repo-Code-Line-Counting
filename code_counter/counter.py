@@ -3,7 +3,6 @@ import logging
 import pathspec
 
 
-
 NOTICE_LEVEL = 25
 if not hasattr(logging, "NOTICE"):
     logging.addLevelName(NOTICE_LEVEL, "NOTICE")

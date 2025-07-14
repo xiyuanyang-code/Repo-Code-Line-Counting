@@ -68,10 +68,14 @@ def main():
 
     # Setup logging based on parsed arguments
     timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S")
-    log_dir = "log"
+    log_dir = os.path.join(os.path.expanduser("~"), ".code_counter_history")
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
-    log_file_path = os.path.join(log_dir, f"code-counting-{timestamp}.log")
+
+    file = (str(args.path).split("/"))[-1]
+    log_file_path = os.path.join(log_dir, f"code-counting-{timestamp}-{file}.log")
+    with open(log_file_path, "w") as file:
+        file.close()
 
     # Convert log level string to numeric level
     numeric_level = getattr(logging, args.log_level.upper(), None)
@@ -98,6 +102,7 @@ def main():
         ):
             logger.log(NOTICE_LEVEL, f"  {ext}: {count}")
         logger.log(NOTICE_LEVEL, "-------------------------------------")
+        print(f"--- Code Counting Report for: {args.path} ---")
         print(total)
         print(Fore.GREEN + str(per_ext) + Style.RESET_ALL)
 

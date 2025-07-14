@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "code-counter"
-version = "0.1.1"
+version = "0.1.2"
 description = "A command-line tool to count lines of code in a repository."
 readme = "README.md"
 authors = [{ name = "Xiyuan Yang", email = "yangxiyuan@sjtu.edu.cn" }]
